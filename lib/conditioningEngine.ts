@@ -46,7 +46,7 @@ export class ConditioningEngine {
         name: "Toxic Independence",
         keywords: ["alone", "help", "burden", "handle", "ask", "need"],
         confidence: (text: string) => this.calculateMatch(text, ["alone", "help", "burden", "handle", "need"]),
-        origin: "Men are taught needing help = failure. This leads to isolation.",
+        origin: "Men are taught needing help = weakness. This leads to isolation.",
         rewrite: "Connection is strength. Everyone needs help sometimes."
       }
     ],
@@ -92,9 +92,10 @@ export class ConditioningEngine {
 
   // Main analysis function
   public analyze(text: string, gender: string) {
+    // Fix: Type assertion to access patterns by gender key
     const patterns = this.patterns[gender as keyof typeof this.patterns] || this.patterns.nonbinary;
     
-    let bestMatch = null;
+    let bestMatch: any = null;
     let highestConfidence = 0;
     
     patterns.forEach(pattern => {
