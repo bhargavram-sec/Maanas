@@ -43,10 +43,12 @@ chat_engine = MentorChatEngine()
 
 # ---------------- API Endpoints ----------------
 @app.get("/api/health")
+@app.get("/health")
 async def health_check():
     return {"status": "ok", "service": "MANAS Life Mentor API"}
 
 @app.post("/api/mentor/advice", response_model=MentorAdviceResponse)
+@app.post("/mentor/advice", response_model=MentorAdviceResponse)
 async def get_mentor_advice(payload: MentorAdviceRequest):
     if not payload.situation.strip():
         raise HTTPException(status_code=400, detail="Situation details cannot be empty")
@@ -54,6 +56,7 @@ async def get_mentor_advice(payload: MentorAdviceRequest):
 
 # Compatibility route
 @app.post("/api/analyze")
+@app.post("/analyze")
 async def compatibility_analyze(payload: dict):
     situation = payload.get("text") or payload.get("situation") or ""
     category = payload.get("category") or "dating"
@@ -71,6 +74,7 @@ async def compatibility_analyze(payload: dict):
     }
 
 @app.post("/api/chat", response_model=ChatResponse)
+@app.post("/chat", response_model=ChatResponse)
 async def chat_message(payload: ChatRequest):
     if not payload.message.strip():
         raise HTTPException(status_code=400, detail="Message cannot be empty")
