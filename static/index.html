@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MANAS — Real Life &amp; Relationship Mentor</title>
+  <meta name="description" content="Direct, actionable mentorship for relationship problems, family pressure, career dilemmas, and social boundaries. No hollow consoling.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+  <link rel="stylesheet" href="/style.css?v=3">
+</head>
+<body data-category="dating" data-theme="light">
+
+  <!-- Ambient Light Backdrops -->
+  <div class="ambient-glow glow-primary"></div>
+  <div class="ambient-glow glow-secondary"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-badge">&#9670;</div>
+        <div>
+          <h1 class="brand-title">MANAS</h1>
+          <p class="brand-tagline">Real-Life Mentor &middot; Actionable Guidance, Zero Toxic Positivity</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button type="button" id="theme-toggle" class="btn-icon" title="Toggle Light/Dark Theme" aria-label="Toggle theme">
+          <span class="theme-icon">&#9680;</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="nav-bar">
+      <div class="container nav-inner">
+        <button class="nav-item active" data-tab="mentor">
+          <span class="nav-icon">&#9881;</span> Dilemma Breakdown
+        </button>
+        <button class="nav-item" data-tab="chat">
+          <span class="nav-icon">&#9993;</span> Live Mentor Chat
+        </button>
+        <button class="nav-item" data-tab="saved">
+          <span class="nav-icon">&#128214;</span> Saved Advice Playbooks
+        </button>
+        <button class="nav-item" data-tab="crisis">
+          <span class="nav-icon">&#9873;</span> Emergency Helplines
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container main-content">
+
+    <!-- 1. DILEMMA BREAKDOWN TAB -->
+    <section id="tab-mentor" class="tab-pane active">
+
+      <!-- Hero Heading -->
+      <header class="section-intro">
+        <h2>What situation are you dealing with?</h2>
+        <p class="section-desc">Select the life domain below. We provide the hard truth, immediate tactical moves, and exact word-for-word scripts.</p>
+      </header>
+
+      <!-- 4 Life Domains Selector -->
+      <div class="domains-grid" role="group" aria-label="Select Life Domain">
+        <button type="button" class="domain-card active" data-category="dating">
+          <div class="domain-icon">&#128149;</div>
+          <div class="domain-info">
+            <h3>Dating &amp; Relationships</h3>
+            <p>Cheating, mixed signals, breakups, boundaries with partners.</p>
+          </div>
+        </button>
+
+        <button type="button" class="domain-card" data-category="family">
+          <div class="domain-icon">&#127969;</div>
+          <div class="domain-info">
+            <h3>Family Expectations</h3>
+            <p>Forced marriage/career, parental guilt-tripping, financial ties.</p>
+          </div>
+        </button>
+
+        <button type="button" class="domain-card" data-category="career">
+          <div class="domain-icon">&#128188;</div>
+          <div class="domain-info">
+            <h3>Work &amp; Career</h3>
+            <p>Toxic boss, imposter anxiety, burnout, asking for raises.</p>
+          </div>
+        </button>
+
+        <button type="button" class="domain-card" data-category="social">
+          <div class="domain-icon">&#129309;</div>
+          <div class="domain-info">
+            <h3>Friendship &amp; Social</h3>
+            <p>Outgrowing friends, one-sided friendships, gossip, peer pressure.</p>
+          </div>
+        </button>
+      </div>
+
+      <!-- Quick Preset Chips -->
+      <div class="presets-row">
+        <span class="presets-label">Common Scenarios:</span>
+        <div id="presets-container" class="presets-chips">
+          <!-- Populated dynamically based on category -->
+        </div>
+      </div>
+
+      <!-- Main Input Studio Card -->
+      <section class="glass-card studio-card">
+        <form id="dilemma-form">
+          <div class="studio-header">
+            <span class="current-domain-pill" id="current-domain-label">Dating &amp; Relationships</span>
+            <div class="goal-selector-group">
+              <span class="goal-label">Goal:</span>
+              <select id="goal-select" class="goal-dropdown">
+                <option value="clarity">Get Clarity (What's actually happening?)</option>
+                <option value="boundaries">Set a Hard Boundary</option>
+                <option value="leave">Decide Whether to Walk Away</option>
+                <option value="confront">Calm Confrontation Script</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="textarea-wrapper">
+            <textarea
+              id="situation-input"
+              rows="5"
+              placeholder="Describe what happened: What did they do or say? How did you respond? What are you feeling conflicted about?"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-footer">
+            <p class="privacy-note">&#128274; Confidential &amp; private. Stored only in your local browser.</p>
+            <button type="submit" id="breakdown-btn" class="btn btn-primary btn-large">
+              <span class="btn-text">Get Tactical Breakdown</span>
+              <span class="spinner" style="display:none;"></span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Multi-Perspective Tactical Advice Dossier -->
+        <article id="advice-dossier" class="dossier-wrap" style="display: none;">
+          <header class="dossier-hero">
+            <div class="hero-left">
+              <span class="badge-category" id="dossier-cat-badge">Dating &amp; Relationships</span>
+              <h3 class="dossier-headline" id="dossier-title">The Anxious-Avoidant Texting Trap</h3>
+            </div>
+            <button type="button" id="save-playbook-btn" class="btn btn-secondary btn-sm">
+              <span>&#128278;</span> Save Playbook
+            </button>
+          </header>
+
+          <!-- Perspective 1: Reality Check (Facts vs. Emotional Assumptions) -->
+          <div class="perspective-section">
+            <div class="perspective-header">
+              <span class="perspective-num">Perspective 01</span>
+              <h4>Epistemic Reality Check &middot; Facts vs. Emotional Assumptions</h4>
+            </div>
+            <div class="facts-assumptions-grid">
+              <div class="fact-col">
+                <div class="fact-col-head green">
+                  <span class="fact-col-icon">&#9679;</span>
+                  <h5>Verified Objective Facts</h5>
+                </div>
+                <ul id="res-facts-list" class="fact-list">
+                  <!-- Populated dynamically -->
+                </ul>
+              </div>
+              <div class="fact-col">
+                <div class="fact-col-head amber">
+                  <span class="fact-col-icon">&#9679;</span>
+                  <h5>Emotional Assumptions (Stories Anxiety Tells)</h5>
+                </div>
+                <ul id="res-assumptions-list" class="fact-list">
+                  <!-- Populated dynamically -->
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Perspective 2: Core Diagnosis & Hard Truth -->
+          <div class="perspective-section">
+            <div class="perspective-header">
+              <span class="perspective-num">Perspective 02</span>
+              <h4>Psychological Diagnosis &middot; Root Cause &amp; Blind Spot</h4>
+            </div>
+            <div class="pillar-box root-box">
+              <div class="pillar-tag">&#128269; Root Diagnosis</div>
+              <p id="res-root" class="pillar-body"></p>
+            </div>
+            <div class="pillar-box truth-box">
+              <div class="pillar-tag">&#9889; The Hard Truth (Your Blind Spot)</div>
+              <p id="res-truth" class="pillar-body italic-lead"></p>
+            </div>
+          </div>
+
+          <!-- Perspective 3: Leverage & Power Dynamic Audit -->
+          <div class="perspective-section">
+            <div class="perspective-header">
+              <span class="perspective-num">Perspective 03</span>
+              <h4>Leverage &amp; Power Dynamic Audit</h4>
+            </div>
+            <div class="leverage-grid">
+              <div class="leverage-card">
+                <div class="leverage-badge blue">Current Dynamic</div>
+                <p id="res-leverage-dynamic" class="leverage-text"></p>
+              </div>
+              <div class="leverage-card">
+                <div class="leverage-badge red">Your Power Leak</div>
+                <p id="res-leverage-leak" class="leverage-text"></p>
+              </div>
+              <div class="leverage-card">
+                <div class="leverage-badge green">Frame Reclaim Move</div>
+                <p id="res-leverage-reclaim" class="leverage-text"></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Perspective 4: Primary Script & Icebreaker -->
+          <div class="perspective-section">
+            <div class="perspective-header">
+              <span class="perspective-num">Perspective 04</span>
+              <h4>Primary Communication Script (Initiation / Baseline)</h4>
+            </div>
+            <div class="pillar-box script-box">
+              <div class="script-header">
+                <span class="script-role-badge">Direct &middot; Calibrated &middot; Non-reactive</span>
+                <button type="button" id="copy-primary-script-btn" class="copy-btn">
+                  <span id="copy-primary-text">&#128203; Copy Script</span>
+                </button>
+              </div>
+              <div class="script-quote-wrap">
+                <p id="res-primary-script" class="script-content"></p>
+              </div>
+              <p class="script-tip">&#128161; <em>Tip: Send this as a calm, confident message without adding apologies, exclamation marks, or paragraph justifications.</em></p>
+            </div>
+          </div>
+
+          <!-- Perspective 5: Conditional Scenario Matrix (Decision Tree) -->
+          <div class="perspective-section">
+            <div class="perspective-header">
+              <span class="perspective-num">Perspective 05</span>
+              <h4>Conditional Scenario Matrix (If / Then Contingency Tree)</h4>
+            </div>
+            <p class="section-subtext">How they respond reveals who they are. Select a scenario branch below to see their psychological trap and your exact counter-response:</p>
+
+            <!-- Scenario Tabs -->
+            <div class="scenario-tabs-nav" id="scenario-tabs-nav" role="tablist">
+              <!-- Populated dynamically -->
+            </div>
+
+            <!-- Active Scenario Content Card -->
+            <div class="scenario-active-display" id="scenario-active-card">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Perspective 6: Conversational Counter-Script Matrix -->
+          <div class="perspective-section">
+            <div class="perspective-header">
+              <span class="perspective-num">Perspective 06</span>
+              <h4>Conversational Counter-Script Matrix</h4>
+            </div>
+            <p class="section-subtext">Quick counters for common manipulation tactics, deflections, and guilt-trips:</p>
+            <div class="counter-matrix-grid" id="counter-scripts-container">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+          <!-- Perspective 7: Long-Term Risk vs. Reward (6-Month Projection) -->
+          <div class="perspective-section">
+            <div class="perspective-header">
+              <span class="perspective-num">Perspective 07</span>
+              <h4>Long-Term Risk vs. Reward (6-Month Projection)</h4>
+            </div>
+            <div class="projection-grid">
+              <div class="projection-card cost-card">
+                <div class="projection-tag red">&#9203; Cost of Doing Nothing (Inaction for 6 Months)</div>
+                <p id="res-cost-6m" class="projection-text"></p>
+              </div>
+              <div class="projection-card payoff-card">
+                <div class="projection-tag green">&#128640; Payoff of Holding the Boundary</div>
+                <p id="res-payoff-boundary" class="projection-text"></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Internal Mindset Shift Footer -->
+          <div class="shift-footer">
+            <span class="shift-label">&#129504; Internal Mindset Shift:</span>
+            <p id="res-shift" class="shift-text"></p>
+          </div>
+        </article>
+      </section>
+    </section>
+
+    <!-- 2. LIVE MENTOR CHAT TAB -->
+    <section id="tab-chat" class="tab-pane">
+      <section class="glass-card chat-card">
+        <header class="card-head chat-head">
+          <div>
+            <div class="head-pill">Direct Honest Advice</div>
+            <h2>Live Mentor Conversation</h2>
+            <p class="subtitle">Tell me what's happening in real-time. I'll help you dissect the situation and tell you what to do.</p>
+          </div>
+          <button type="button" id="clear-chat-btn" class="pill-btn danger">Clear Chat</button>
+        </header>
+
+        <div id="chat-stream" class="chat-stream">
+          <div class="message-bubble mentor-bubble">
+            <div class="avatar">&#9670;</div>
+            <div class="bubble-content">
+              <p>I'm here. Tell me what's going on—who is involved, what happened, and what you're thinking of doing next. Let's figure this out together.</p>
+              <span class="msg-time">Just now</span>
+            </div>
+          </div>
+        </div>
+
+        <form id="chat-form" class="chat-input-row">
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Type your dilemma, a text message you received, or what you're overthinking..."
+            autocomplete="off"
+            required
+          >
+          <button type="submit" class="btn btn-primary send-btn">Send &rarr;</button>
+        </form>
+      </section>
+    </section>
+
+    <!-- 3. SAVED PLAYBOOKS TAB -->
+    <section id="tab-saved" class="tab-pane">
+      <section class="glass-card">
+        <header class="card-head journal-head">
+          <div>
+            <div class="head-pill">Your Action Playbooks</div>
+            <h2>Saved Tactical Breakdowns</h2>
+            <p class="subtitle">Refer back to past advice, scripts, and boundaries whenever you feel doubt creeping in.</p>
+          </div>
+          <button type="button" id="clear-saved-btn" class="pill-btn danger">Clear All</button>
+        </header>
+
+        <div id="saved-list" class="saved-cards-container">
+          <p class="empty-state">No playbooks saved yet. Generate an advice breakdown on the Dilemma tab and click &ldquo;Save Playbook&rdquo;.</p>
+        </div>
+      </section>
+    </section>
+
+    <!-- 4. EMERGENCY HELPLINES TAB -->
+    <section id="tab-crisis" class="tab-pane">
+      <section class="glass-card">
+        <header class="card-head">
+          <div class="head-pill">24/7 Professional Care</div>
+          <h2>Emergency Helplines &amp; Crisis Support</h2>
+          <p class="subtitle">If you are in danger, facing physical abuse, or in deep emotional distress, please connect with trained professionals immediately.</p>
+        </header>
+
+        <div class="crisis-grid">
+          <div class="res-box highlight">
+            <h3>India National Mental Health Helplines</h3>
+            <p><strong>Tele-MANAS</strong>: <a href="tel:14416">14416</a> or <a href="tel:18008914416">1800-891-4416</a> (24/7 Free Govt. Counseling)</p>
+            <p><strong>KIRAN Helpline</strong>: <a href="tel:18005990019">1800-599-0019</a> (Govt. Mental Health Support)</p>
+            <p><strong>Vandrevala Foundation</strong>: <a href="tel:+919999666555">+91 9999 666 555</a></p>
+          </div>
+
+          <div class="res-box">
+            <h3>International Helplines</h3>
+            <p><strong>United States &amp; Canada</strong>: Call or Text <a href="tel:988">988</a></p>
+            <p><strong>United Kingdom</strong>: Call <a href="tel:111">111</a> (NHS) or <a href="tel:116123">116 123</a> (Samaritans)</p>
+            <p><strong>Global Crisis Directory</strong>: <a href="https://findahelpline.com" target="_blank" rel="noopener">findahelpline.com</a></p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>&copy; MANAS &middot; Real-World Life &amp; Relationship Mentorship.</p>
+      <p class="footer-sub">Private, secure, and grounded in actionable psychological frameworks.</p>
+    </div>
+  </footer>
+
+  <script src="/app.js?v=3"></script>
+</body>
+</html>
