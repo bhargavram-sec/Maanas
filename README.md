@@ -44,3 +44,14 @@ python backend/main.py
 # 3. Open in your browser
 open http://localhost:3000
 ```
+
+## Deployment (Render)
+
+1. Connect your repository on [Render](https://render.com).
+2. Choose **Web Service** with the following settings:
+   - **Runtime**: `Python`
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `uvicorn backend.main:app --host 0.0.0.0 --port $PORT`
+3. In **Environment Variables**, add:
+   - `GEMINI_API_KEY`: `your-gemini-api-key`
+4. Click **Create Web Service**. Render will build and deploy the app on a free `onrender.com` URL.
